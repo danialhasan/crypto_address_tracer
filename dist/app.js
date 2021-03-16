@@ -13,6 +13,6 @@ app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.use(express_1.default.static('public'));
 //routes
-app.use('/', require('./routes/index.ts'));
+app.use('/', require('./routes/index'));
 // app.get('/', (req:Request, res:Response)=>res.send("Hello!"));
 app.listen(port, () => console.log(`Listening on port ${port}`));

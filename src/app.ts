@@ -13,7 +13,7 @@ app.use(expressLayouts);
 
 app.use(express.static('public'));
 //routes
-app.use('/', require('./routes/index.ts'))
+app.use('/', require('./routes/index'))
 
 // app.get('/', (req:Request, res:Response)=>res.send("Hello!"));
 
