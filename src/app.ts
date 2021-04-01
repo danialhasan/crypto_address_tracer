@@ -14,7 +14,6 @@ app.use(expressLayouts);
 app.use(express.static('public'));
 //routes
 app.use('/', require('./routes/index'))
-
-// app.get('/', (req:Request, res:Response)=>res.send("Hello!"));
+app.use('*', require('./routes/404'))
 
 app.listen(port, ()=>console.log(`Listening on port ${port}`))

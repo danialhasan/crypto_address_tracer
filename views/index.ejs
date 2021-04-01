@@ -1,1 +1,102 @@
-<h1 class="text-4xl">Hello World!</h1>
+<div id="changeViewingMode" class="w-8 h-8 absolute right-0 top-0 m-8">
+    <img id="darkMode" class="w-full h-full cursor-pointer" src="./assets/moon-stars-fill.svg" alt="Activate Night Mode"
+        srcset="">
+    <!-- todo: animation to star when clicked -->
+    <img id="lightMode" class="hidden w-full h-full cursor-pointer" src="./assets/sun.svg" alt="Activate Light Mode"
+        srcset="">
+</div>
+<div id="headerContainer" class="w-auto mx-auto text-center mt-40 md:mt-64 xl:mt-56">
+    <h1 id="mainPageHeader" class="transition-all font-sans text-5xl my-2 text-center font-bold select-none">Crypto
+        Address Tracer</h1>
+    <div class="h-auto w-auto md:flex md:align-center md:w-full md:h-auto md:mx-auto md:justify-center">
+        <!-- container is there solely for the purpose of centering the next two elements vertically and horizontally. -->
+        <input id="addressInput" type="text" class="transition-all bg-gray-400 focus:bg-gray-500 placeholder-gray-200 w-5/6 md:w-2/5 xl:w-96 md:mr-2 h-auto pl-3 py-3 text-xl text-white text-left truncate
+        md:rounded-lg" placeholder="Ethereum address/ENS here">
+        <button id="submitBtn" class="transition-all active:bg-red-700 hover:bg-red-500 text-3xl text-white font-sans font-semibold w-5/6 md:w-1/6 xl:w-1/12 py-4 md:px-2 md:py-2 mt-2 rounded-xl bg-red-400 shadow-md 
+        md:text-2xl md:rounded-xl md:mt-0">Search</button>
+    </div>
+    <div id="errorElement" class="hidden w-full h-auto">
+        <h3 class="text-black">Not found. <a href="/">Try again?</a></h3>
+    </div>
+</div>
+<div id="templateContainer">
+    <!-- This is where the templates will be appended to. -->
+</div>
+
+<template id="addressInfoBoxTemplate">
+    <div
+        class="mx-auto flex mt-5 flex-col container content-center rounded-md bg-white text-base w-52 h-24 shadow-2xl ">
+        <div class="w-full h-1/2 flex content-center items-center">
+            <div
+                class="h-8 w-24 mx-auto flex rounded-lg justify-center font-semibold text-gray-600 items-center bg-gray-300">
+                ADDRESS
+            </div>
+        </div>
+        <div class="w-full h-1/2 content-center items-center">
+            <div class="h-8 w-full mx-auto flex justify-center font-semibold text-gray-800 items-center">
+                Vitalik.eth
+                <!-- the textcontent of this element can't exceed 12 characters. -->
+                <img src="./assets/ic20-copy.svg" alt="Copy Address to Clipboard" srcset="">
+                <!-- FIXME : this icon isn't showing up -->
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="token_collection_box_template">
+    <div id="token_collection_box" class="hidden  rounded-lg mx-auto my-4 flex-row container bg-gray-200 w-72 h-16">
+        <!-- replace 'hidden' with 'flex'to reveal this element -->
+        <div id="selected"
+            class="transition-all h-auto w-1/2 px-2 m-2 bg-gray-700 flex justify-center items-center rounded-lg text-white">
+            COLLECTIONS
+        </div>
+        <div id="" class="transition-all h-auto px-2 w-1/2 m-2 flex justify-center items-center rounded-lg">
+            TOKENS
+        </div>
+    </div>
+    <div id="tokenContainer" class="w-full h-auto mb-4 ">
+        <!--
+    This is where all the collections/tokens will go. 
+    The content inside this container will depend on which option between collection/token is 
+    selected. Since the default selection is collections, the page will automatically begin loading the 
+    collections owned by the inputted address.
+    -->
+    </div>
+
+</template>
+<template id="noTokensError">
+    <div clas="w-full h-auto text-center px-4">
+        <h3 class="font-sans text-lg">This address does not have any tokens associated with it.</h3>
+    </div>
+</template>
+<template id="tokenTemplate">
+    <!-- this is a template for the token. each token will be displayed with this template. -->
+    <div class="max-w-2xl w-96 mx-auto border-gray-200 shadow-xl rounded-xl h-auto">
+        <div class="flex justify-between px-4 w-full h-16">
+            <div class="self-center inline-flex w-auto h-12">
+                <img id="token_logo" class="w-12 h-12"
+                    src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png" alt="token LOGO" srcset="" />
+                <div class="self-center pl-2 w-auto h-full">
+                    <div id="token_symbol" class="w-full h-1/2 pt-1 text-lg ">[TOKEN SYMBOL HERE]</div>
+                    <div id="token_name" class="w-full h-1/2 pt-1 text-sm text-gray-500">[TOKEN NAME HERE]</div>
+                </div>
+            </div>
+
+            <div class="flex self-center w-auto h-full">
+                <div id="token_amount" class="self-center w-full h-auto text-lg">[TOKEN AMOUNT HERE]</div>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<!-- 
+The images are currently full size, and take up more space than they appear to.
+I'm going to replace the images with jpegs sized to what they seem to be sized, with minimal
+whitespace. I'll keep the absolute bottom-0 until the response data from the API comes in,
+then I'll set them to static and remove the bottom-0 class. 
+ -->
+<img id="background_image_mobile" class="md:hidden absolute bottom-0 select-none pointer-events-none w-full h-auto"
+    src="./assets/waves_mobile.svg" alt="Bottom graphic art for Mobile" srcset="">
+<img id="background_image_desktop" class="hidden md:block absolute bottom-0 w-screen select-none pointer-events-none"
+    src="./assets/waves_desktop.svg" alt="Bottom graphic art for Desktop" srcset="">

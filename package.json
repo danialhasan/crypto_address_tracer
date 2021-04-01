@@ -7,7 +7,7 @@
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "build": "tsc -p .",
-    "build:css": "npx tailwindcss-cli@latest build ./public/styles/tailwind.css -o ./public/styles/stylesheet.css"
+    "build:css": "npx tailwindcss-cli@latest build ./public/styles/src/stylesheet.css -o ./public/styles/dist/tailwind.css"
   },
   "keywords": [],
   "author": "",
@@ -19,13 +19,15 @@
     "nodemon": "^2.0.7",
     "postcss": "^8.2.8",
     "tailwindcss": "^2.0.3",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.3"
+    "ts-node": "^9.1.1"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "express-ejs-layouts": "^2.5.0"
+    "express-ejs-layouts": "^2.5.0",
+    "web3": "^1.3.4",
+    "web3-eth": "^1.3.4"
   }
 }
