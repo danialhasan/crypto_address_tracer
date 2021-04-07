@@ -112,9 +112,7 @@ submitBtn.addEventListener('click', async () => {
     }
 
     /**
-     * Instead of body.append, which appends the node to the bottom of the DOM and 
-     * places the element below the background image, I should append it to something that 
-     * precedes the background images to make sure they stay at the bottom of the page. 
+     * This for loop places the 'ADDRESS'/'ENS'/'BALANCE' boxes on the page.
      */
     for (let i = 0; i < 3; i++) {
         var addressInfoBoxClone = addressInfoBoxTemplate.content.cloneNode(true)
