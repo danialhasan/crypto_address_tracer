@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const express = require('express');
 const router = express.Router();
-const testURL = "https://kovan-api.ethplorer.io";
+const URL = "https://api.ethplorer.io";
 const testAPIKey = 'freekey';
 const API_KEY = process.env.API_KEY || '';
 const method = '/getAddressInfo/';
@@ -37,7 +37,7 @@ router.get('/api', async (req, res) => {
     console.log(`Ether Address: ${address}`);
     await axios_1.default({
         method: 'get',
-        url: `${testURL}${method}${address}/`,
+        url: `${URL}${method}${address}/`,
         params: {
             apiKey: API_KEY
         }
@@ -54,8 +54,8 @@ router.get('/api', async (req, res) => {
         res.send(JSON.stringify(response.data));
     })
         .catch((err) => {
-        console.log(err);
-        res.status(404);
+        console.log(`ERROR: Status Code ${err.response.status}`);
+        console.log(`Status Text: ${err.response.statusText}`);
     });
 });
 module.exports = router;
