@@ -1,8 +1,12 @@
 module.exports = {
-  purge: [
-    'layout.ejs',
-    'index.ejs' //add 404.ejs later
-  ],
+  purge: {
+    enabled: true,
+    content: [
+      './views/layout.ejs',
+      './views/index.ejs',
+      './views/404.ejs'
+    ]
+  },
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {

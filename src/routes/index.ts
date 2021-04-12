@@ -28,16 +28,7 @@ router.get('/', (req:Request, res:any) => {
 })
 router.get('/api', async (req: any, res: any) => {
     let address: String = req.query.address;
-    console.log(address)
-
-//todo: we must take this address, and check to see what it's hex is in case
-    //it is ENS. After that, we take the hex ENS and plug it into the await axios function below. 
-
-    /**
-     * I have spent a whole day on the ENS->Address problem. I have not found a solution that works yet. I am going to 
-     * push the feature later down the timeline and work on displaying information for now.
-     */
-
+    console.log(`Address: ${address}`);
 
     console.log(`Ether Address: ${address}`);
     await axios({
@@ -56,12 +47,23 @@ router.get('/api', async (req: any, res: any) => {
              * put them into an array, and then that stringified array will be sent.
              */
             console.log(response)
+            response.data.statusCode = 200
+            response.data.statusText = 'Address found!'
+            console.log(response.data)
             res.send(JSON.stringify(response.data))
         })
         .catch((err) => {
         console.log(`ERROR: Status Code ${err.response.status}`);
         console.log(`Status Text: ${err.response.statusText}`);
 
+            let errorObject = {
+                statusCode: err.response.status,
+                statusText: err.response.statusText
+            }
+
+            if (err.response.status == '406') {
+                res.send(errorObject);
+            }
         })
 })
 

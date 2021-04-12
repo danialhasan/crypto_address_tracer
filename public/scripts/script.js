@@ -1,7 +1,9 @@
+// NOTE: BUTTON DOESN'T CLICK ON SAFARIm
+
 console.log("0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045");
 
 let devmode = true
-let tokensExist = true;
+var tokensExist = true;
 const darkModeButton = document.getElementById('darkMode');
 const lightModeButton = document.getElementById('lightMode');
 const changeViewingMode = document.getElementById('changeViewingMode');
@@ -83,32 +85,56 @@ submitBtn.addEventListener('click', async () => {
                 address: input
             }
         });
+
         var { //'var' instead of 'let', to not limit scope to this 'try' block
             address,
             ETH, // All address return 0 ETH when on the test net!
             countTxs,
-            tokens
+            tokens,
+            statusCode,
+            statusText
         } = response.data;
-        if (tokens == null) {
-            tokensExist = false;
-            console.log("no tokens on this address.")
-        } else {
-            tokensExist = true
-        }
-        // Now: shift elements and display info.
 
-        addressInput.classList.toggle('hidden');
-        submitBtn.classList.toggle('hidden');
-        headerContainer.classList.replace('mt-40', 'mt-20'); //move header up, phones
-        headerContainer.classList.replace('md:mt-64', 'md:mt-16'); //move header up, ipads
-        headerContainer.classList.replace('xl:mt-56', 'xl:mt-44'); //move header up, desktops
-        // background_image_mobile.classList.remove('absolute', 'bottom-0');
-        // background_image_desktop.classList.remove('absolute', 'bottom-0');
-        // Uncomment these two background images when you add the token functionality back in
+        switch (statusCode) {
+            case 200:
+                console.log('Address found with API!');
+
+                if (tokens == null) {
+                    tokensExist = false;
+                    console.log("no tokens on this address.")
+                } else {
+                    tokensExist = true
+                }
+                // Now: shift elements and display info.
+
+                addressInput.classList.toggle('hidden');
+                submitBtn.classList.toggle('hidden');
+                headerContainer.classList.replace('mt-40', 'mt-20'); //move header up, phones
+                headerContainer.classList.replace('md:mt-64', 'md:mt-16'); //move header up, ipads
+                headerContainer.classList.replace('xl:mt-56', 'xl:mt-44'); //move header up, desktops
+                // background_image_mobile.classList.remove('absolute', 'bottom-0');
+                // background_image_desktop.classList.remove('absolute', 'bottom-0');
+                // Uncomment these two background images when you add the token functionality back in
+                errorElement.classList.add('hidden')
+
+                break;
+
+            case 406:
+                console.log('Address syntax is wrong. Inputted address is not a real ethereum address.');
+                errorElement.children[0].textContent = 'Address not found. Inputted address is not a real ethereum address. Try again?'
+                errorElement.classList.remove('hidden')
+                return;
+                break;
+
+            default:
+                errorElement.children[0].textContent = 'Something went wrong on our end. Try again.'
+                errorElement.classList.remove('hidden')
+                break;
+        }
 
     } catch (error) {
         console.log(`ERROR: ${error}`);
-        errorElement.firstChild.classList.toggle('hidden')
+        errorElement.classList.toggle('hidden')
     }
 
     /**
