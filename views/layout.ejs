@@ -12,6 +12,11 @@
 </head>
 
 <body class="transition-all">
+    <div class="h-0 w-0 bg-custom_black text-custom_red-500">
+        <div class="text-custom_red-400"></div>
+        <div class="text-custom_red-700"></div>
+        <!-- This div is solely for ensuring bg-custom_black and text-custom_red-400/500/700 don't get purged during css:build. -->
+    </div>
     <%- body %>
 </body>
 

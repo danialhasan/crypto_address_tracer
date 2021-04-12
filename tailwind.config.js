@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        red: {
+        custom_red: {
           100: '#fff5f5',
           200: '#fed7d7',
           300: '#feb2b2',
@@ -22,7 +22,7 @@ module.exports = {
           800: '#9b2c2c',
           900: '#742a2a'
         },
-        black: '#002233'
+        custom_black: '#002233'
       }
     },
   },

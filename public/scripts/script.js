@@ -39,19 +39,19 @@ window.matchMedia('(prefers-color-scheme: dark)')
     });
 
 function darkMode() {
-    body.classList.toggle('bg-black');
+    body.classList.toggle('bg-custom_black');
     darkModeButton.classList.toggle('hidden');
     lightModeButton.classList.toggle('hidden');
     header.classList.toggle('text-white');
-    errorElement.children[0].classList.replace('text-black', 'text-white')
+    errorElement.children[0].classList.replace('text-custom_black', 'text-white')
 }
 
 function lightMode() {
-    body.classList.toggle('bg-black');
+    body.classList.toggle('bg-custom_black');
     darkModeButton.classList.toggle('hidden');
     lightModeButton.classList.toggle('hidden');
     header.classList.toggle('text-white');
-    errorElement.children[0].classList.replace('text-black', 'text-white')
+    errorElement.children[0].classList.replace('text-custom_black', 'text-white')
 }
 /**
  * TODO:
